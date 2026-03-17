@@ -126,7 +126,7 @@ https://chronohub.netlify.app/
 
 ## 👨‍💻 Author
 
-**Abhay Chauhan**
+**Abhay Pratap Singh Chauhan**
 
 Frontend Developer
 Passionate about building clean UI and modular JavaScript applications.
