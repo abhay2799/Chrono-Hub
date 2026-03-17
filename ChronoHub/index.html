@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoHub</title>
+    <link rel="icon" type="image/png" href="ChronoHub.png">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="./js/main.js" defer></script>
+</head>
+
+
+<body class="dark">
+
+    <!-- SETTINGS BUTTON -->
+    <div class="settings-btn" title="Options">≡</div>
+
+
+    <!-- SETTINGS PANEL -->
+    <div class="settings-panel">
+
+        <h2>Options</h2>
+
+        <div class="setting-item">
+            <label>Auto Mode</label>
+            <input type="checkbox" id="autoModeToggle">
+        </div>
+
+        <div class="setting-item">
+            <label>Dark Mode</label>
+            <input type="checkbox" id="darkModeToggle">
+        </div>
+
+        <div class="setting-item">
+            <label>Digital Clock</label>
+            <input type="checkbox" id="digitalClockToggle">
+        </div>
+
+        <div class="setting-item">
+            <label>Analog Clock</label>
+            <input type="checkbox" id="analogClockToggle">
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div id="clockPage" class="page active"> <!-- clock page start -->
+
+
+            <!-- ANALOG CLOCK -->
+            <div class="clock">
+
+                <div class="reflection"></div>
+
+                <div class="markers">
+                    <span style="--i:1"></span>
+                    <span style="--i:2"></span>
+                    <span style="--i:3"></span>
+                    <span style="--i:4"></span>
+                    <span style="--i:5"></span>
+                    <span style="--i:6"></span>
+                    <span style="--i:7"></span>
+                    <span style="--i:8"></span>
+                    <span style="--i:9"></span>
+                    <span style="--i:10"></span>
+                    <span style="--i:11"></span>
+                    <span style="--i:12"></span>
+                </div>
+
+                <div class="hand hour"></div>
+                <div class="hand minute"></div>
+                <div class="hand second"></div>
+
+                <div class="center-dot"></div>
+
+            </div>
+
+            <!-- DIGITAL CLOCK -->
+            <div id="digital-Clock" class="digital-clock">
+
+                <h1 id="digitalTime"></h1>
+
+            </div>
+
+            <!-- DATE -->
+            <div class="date-box">
+                <p id="fullDate"></p>
+                <p id="dayName"></p>
+            </div>
+
+        </div> <!-- clock page end -->
+
+
+        <!-- ================= ALARM PAGE ================= -->
+
+        <div id="alarmPage" class="page">
+
+            <!-- header -->
+
+            <div class="alarm-header">
+
+                <h1 class="alarm-title">Alarms</h1>
+
+            </div>
+
+
+            <!-- alarm list -->
+
+            <div class="alarm-list"></div>
+
+
+            <!-- add alarm -->
+
+            <div class="add-alarm">
+
+                <button class="add-alarm-btn" title="Add Alarm">✛</button>
+
+            </div>
+
+            <!-- TIME PICKER MODAL -->
+
+            <div class="time-modal" id="timeModal">
+
+                <div class="time-modal-box">
+
+                    <h3>Select time</h3>
+
+                    <div class="time-row">
+
+                        <input type="number" id="hourInput" placeholder="08" inputmode="numeric">
+
+                        <p class="time-error" id="hourError">Hours must be 1-12</p>
+
+                        <span class="colon">:</span>
+
+                        <input type="number" id="minuteInput" placeholder="00" inputmode="numeric">
+
+                        <p class="time-error" id="minuteError">Minutes must be 0-59</p>
+
+                        <div class="ampm">
+
+                            <button class="ampm-btn active" data-period="AM">AM</button>
+
+                            <button class="ampm-btn" data-period="PM">PM</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-buttons">
+
+                        <button id="cancelAlarm">Cancel</button>
+
+                        <button id="okAlarm">OK</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Alarm Ring System -->
+
+            <!-- sound select -->
+            <label class="alarm-sound-btn" title="Add Alarm Sound">
+
+                🎵
+
+                <input type="file" id="alarmSoundInput" accept="audio/*" hidden>
+
+            </label>
+
+            <div id="alarmPopup" class="alarm-popup">
+
+                <div class="alarm-popup-box">
+
+                    <h2 class="alarm-popup-time">07:30 AM</h2>
+
+                    <div class="alarm-popup-controls">
+
+                    </div>
+
+                    <div class="alarm-popup-buttons">
+
+                        <button id="snoozeBtn">Snooze (10 min)</button>
+
+                        <button id="stopBtn">Stop</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <!-- ================= STOPWATCH PAGE ================= -->
+        <div id="stopwatchPage" class="page">
+
+            <div class="stopwatch">
+
+                <h2 class="title">Stopwatch</h2>
+
+                <div class="time" id="time">00:00.00</div>
+
+                <div class="controls">
+
+                    <button id="startBtn" class="start">Start</button>
+
+                    <button id="lapBtn" class="hidden">Lap</button>
+
+                    <button id="stopBtnn" class="stop hidden">Stop</button>
+
+                    <button id="resetBtn" class="reset hidden">Reset</button>
+
+                </div>
+
+                <ul id="laps" class="laps"></ul>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= COUNTDOWN PAGE ================= -->
+
+        <div id="countdownPage" class="page">
+
+            <div id="CD-heading"><h2>CountDown</h2></div>
+
+            <div class="timer-setup">
+
+                <div class="timer-inputs">
+                    <input id="hours" type="number" placeholder="h">
+                    <input id="minutes" type="number" placeholder="m">
+                    <input id="seconds" type="number" placeholder="s">
+                </div>
+
+                <button id="startTimer">▶</button>
+
+            </div>
+
+
+            <div id="timerPopup">
+
+                <button id="closeTimer">✕</button>
+
+                <div class="timer-circle">
+
+                    <svg width="260" height="260">
+
+                        <circle cx="130" cy="130" r="120" class="circle-bg"></circle>
+
+                        <circle cx="130" cy="130" r="120" class="circle-progress"></circle>
+
+                    </svg>
+
+                    <div id="timerDisplay">00:00:00</div>
+
+                </div>
+
+                <div class="timer-controls">
+
+                    <button id="addMinute">+1:00</button>
+
+                    <button id="pauseTimer">⏸</button>
+
+                </div>
+
+            </div>
+
+        </div> <!-- COUNTDOWN PAGE END -->
+
+
+        <!-- MENU BUTTONS -->
+
+        <div class="tabs">
+
+            <button class="tab-btn active" data-page="clockPage">
+                <span class="icon">🕒</span>
+                <span class="label">Clock</span>
+            </button>
+
+            <button class="tab-btn" data-page="alarmPage">
+                <span class="icon">⏰</span>
+                <span class="label">Alarm</span>
+            </button>
+
+            <button class="tab-btn" data-page="stopwatchPage">
+                <span class="icon">⏱</span>
+                <span class="label">Stopwatch</span>
+            </button>
+
+            <button class="tab-btn" data-page="countdownPage">
+                <span class="icon">⏳</span>
+                <span class="label">Countdown</span>
+            </button>
+
+        </div>
+    </div> <!-- container END -->
+
+</body>
+
+</html>

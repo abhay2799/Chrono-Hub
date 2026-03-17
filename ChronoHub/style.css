@@ -1,0 +1,2442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= BACKGROUND ================= */
+
+body {
+
+    display: grid;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #ffffff;
+    overflow: auto;
+    background-color: #080808;
+    background-image: radial-gradient(circle at center,
+            rgba(118, 68, 227, 0.597) 0%,
+            rgba(18, 3, 50, 0.799) 35%,
+            rgba(36, 25, 50, 0.956) 70%,
+            #04040441 100%);
+
+}
+
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+    gap: 20px;
+}
+
+/* ================= CLOCK ================= */
+
+.clock {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    margin-top: 20vh;
+
+    --clock-size: 320px;
+
+    width: var(--clock-size);
+    height: var(--clock-size);
+
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle at 30% 30%, #1c0735, #000000 75%);
+
+    box-shadow: inset 0 0 30px rgba(23, 1, 38, 0.04),
+        inset 0 -25px 60px rgba(48, 11, 83, 0.108),
+        0 40px 120px rgba(0, 0, 0, 0.9);
+
+    transition: all 0.5s ease-in-out;
+
+    overflow: hidden;
+
+}
+
+/* Small phones */
+@media (max-width:480px) {
+
+    .clock {
+        width: 220px;
+        height: 220px;
+    }
+
+}
+
+/* Normal phones */
+@media (max-width:768px) {
+
+    .clock {
+        width: 260px;
+        height: 260px;
+    }
+
+}
+
+/* Tablets */
+@media (max-width:1024px) {
+
+    .clock {
+        width: 300px;
+        height: 300px;
+    }
+
+}
+
+/* Large laptops / desktops */
+@media (min-width:1400px) {
+
+    .clock {
+        width: 320px;
+        height: 320px;
+    }
+
+}
+
+/* Ultra wide screens / TV */
+@media (min-width:1800px) {
+
+    .clock {
+        width: 450px;
+        height: 450px;
+    }
+
+}
+
+
+/* DARK MODE HOVER */
+
+body.dark .clock:hover {
+
+    background: radial-gradient(circle at 30% 30%,
+            #8407c336,
+            #65048f48 75%);
+
+    box-shadow:
+        inset 0 0 30px rgba(29, 1, 64, 0.932),
+        inset 0 -25px 60px rgb(29, 9, 55),
+        0 40px 120px rgba(117, 10, 224, 0.9);
+
+    transform: scale(1.08);
+
+}
+
+/* ================= METALLIC RING ================= */
+
+.clock::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -50px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(140deg,
+            rgba(6, 0, 10, 0.653),
+            rgba(5, 0, 8, 0.784) 30%,
+            rgb(24, 1, 47) 70%);
+
+    z-index: -1;
+
+}
+
+/* THIN EDGE */
+
+.clock::after {
+
+    content: "";
+
+    position: absolute;
+
+    padding: 8px;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    border: 6px solid rgba(248, 246, 249, 0.947);
+
+}
+
+/* ================= ROTATING SHINE ================= */
+
+.reflection {
+
+    position: absolute;
+
+    inset: -20%;
+
+    border-radius: 50%;
+
+    pointer-events: relative;
+
+    background: conic-gradient(from 0deg,
+            transparent 0deg,
+            rgba(255, 255, 255, 0.18) 50deg,
+            transparent 90deg);
+
+    filter: blur(8px);
+
+    animation: rotateShine 70s linear infinite;
+
+    opacity: 0.7;
+
+}
+
+@keyframes rotateShine {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* ================= MARKERS ================= */
+
+.markers span {
+
+    position: absolute;
+
+    width: 3px;
+    height: 22px;
+
+    background: rgba(245, 244, 243, 0.9);
+
+    top: 18px;
+    left: 50%;
+
+    transform-origin: center calc(var(--clock-size) / 2 - 18px);
+
+    transform: rotate(calc(30deg * var(--i)));
+
+    border-radius: 10px;
+
+}
+
+/* small phones */
+@media (max-width:480px) {
+
+    .clock {
+        --clock-size: 220px;
+    }
+
+}
+
+/* phones */
+@media (max-width:768px) {
+
+    .clock {
+        --clock-size: 260px;
+    }
+
+}
+
+/* tablets */
+@media (max-width:1024px) {
+
+    .clock {
+        --clock-size: 300px;
+    }
+
+}
+
+/* large screens */
+@media (min-width:1400px) {
+
+    .clock {
+        --clock-size: 320px;
+    }
+
+}
+
+/* ultra wide / TV */
+@media (min-width:1800px) {
+
+    .clock {
+        --clock-size: 450px;
+    }
+
+}
+
+
+/* ================= HANDS ================= */
+
+.hand {
+
+    position: absolute;
+
+    bottom: 50%;
+    left: 50%;
+
+    transform-origin: bottom;
+
+}
+
+.hour {
+
+    width: 6px;
+    height: 80px;
+
+    background: #EAEAEA;
+
+    margin-left: -3px;
+
+    border-radius: 4px;
+
+}
+
+.minute {
+
+    width: 4px;
+    height: 110px;
+
+    background: #EAEAEA;
+
+    margin-left: -2px;
+
+    border-radius: 4px;
+
+}
+
+.second {
+
+    width: 2px;
+    height: 130px;
+
+    background: #FF8C42;
+
+    margin-left: -1px;
+
+    box-shadow: 0 0 15px rgba(255, 140, 66, 1);
+
+}
+
+/* ================= CENTER DOT ================= */
+
+.center-dot {
+
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    background: #EAEAEA;
+
+    border-radius: 50%;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+/* ================= DATE ================= */
+
+.date-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 40px;
+    text-align: center;
+}
+
+#fullDate {
+    font-size: clamp(18px, 2.2vw, 26px);
+    color: #f3f4f6;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu;
+}
+
+#dayName {
+    margin-top: 8px;
+    font-size: clamp(14px, 1.8vw, 20px);
+    font-weight: 400;
+    letter-spacing: clamp(6px, 1vw, 12px);
+    color: #f5f6f8;
+}
+
+/* Small phones */
+
+@media (max-width:480px) {
+
+    .date-box {
+        margin-top: 30px;
+    }
+
+}
+
+
+/* Tablets */
+
+@media (max-width:1024px) {
+
+    .date-box {
+        margin-top: 35px;
+    }
+
+}
+
+
+/* Large screens */
+
+@media (min-width:1400px) {
+
+    .date-box {
+        margin-top: 45px;
+    }
+
+}
+
+
+/* Ultra wide / TV */
+
+@media (min-width:1800px) {
+
+    .date-box {
+        margin-top: 55px;
+    }
+
+}
+
+/* Short screens */
+
+@media (max-height:650px) {
+
+    .clock {
+        margin-top: 8vh;
+    }
+
+    .date-box {
+        margin-top: 25px;
+    }
+
+}
+
+@media (max-height:550px) {
+
+    .clock {
+        margin-top: 5vh;
+    }
+
+    .date-box {
+        margin-top: 18px;
+    }
+
+}
+
+/* ================= Tab ================= */
+
+.tabs {
+
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+    padding: 12px 24px;
+
+    width: fit-content;
+    max-width: 90vw;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 40px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    z-index: 100;
+
+}
+
+.tabs button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.tabs button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(26, 25, 25, 0.827);
+    transform: scale(1.9);
+    box-shadow: 5px 20px rgba(16, 16, 16, 0.816);
+    transform: translateY(-8px);
+    opacity: 0.9;
+}
+
+.tab-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(26, 25, 25, 0.827);
+    transform: scale(1.0);
+    box-shadow: 5px 20px rgba(16, 16, 16, 0.999);
+    transform: translateY(-8px);
+    opacity: 0.9;
+}
+
+
+/* =================ICONS =============================*/
+
+.icon {
+    font-size: 18px;
+}
+
+/* ==================== Mobile responsive UI ================ */
+
+@media (max-width:600px) {
+
+    .tabs {
+
+        gap: 12px;
+        padding: 10px 16px;
+
+    }
+
+    .tabs .label {
+        display: none;
+    }
+
+    .icon {
+        font-size: 22px;
+    }
+
+}
+
+/* ==================== Tablet responsive UI ================ */
+
+@media (min-width:601px) and (max-width:1024px) {
+
+    .icon {
+        font-size: 20px;
+    }
+
+    .tabs button {
+        font-size: 13px;
+    }
+
+}
+
+/* ==================== Large Screen responsive UI ================ */
+
+@media (min-width:1025px) {
+
+    .icon {
+        font-size: 18px;
+    }
+
+    .tabs button {
+        font-size: 15px;
+    }
+
+}
+
+
+/* ================= SETTINGS BUTTON ================= */
+
+.settings-btn {
+    position: fixed;
+    top: 15px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+    font-weight: 600;
+    cursor: pointer;
+
+    color: white;
+
+    /* GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+
+    transition: transform .3s ease
+}
+
+.settings-btn.fade {
+    opacity: -20;
+}
+
+.settings-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ================= SETTINGS PANEL ================= */
+
+.settings-panel {
+    position: fixed;
+    top: 10px;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transform: translateX(100%);
+    transition: 0.4s;
+    z-index: 999;
+}
+
+.settings-panel.active {
+
+    right: 0;
+    transform: translateX(0);
+
+}
+
+.settings-panel h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+
+}
+
+/* SETTINGS OPTION ROW */
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.setting-item input {
+    appearance: none;
+    width: 45px;
+    height: 24px;
+    background: #444;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.setting-item input::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: 0.3s;
+}
+
+.setting-item input:checked {
+    background: #1e81de;
+}
+
+.setting-item input:checked::before {
+    transform: translateX(20px);
+}
+
+/* ================= TOGGLE SWITCH ================= */
+
+.switch {
+
+    width: 42px;
+    height: 22px;
+
+    background: #444;
+
+    border-radius: 20px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.switch::before {
+
+    content: "";
+
+    width: 18px;
+    height: 18px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 2px;
+    left: 2px;
+
+    transition: .3s;
+
+}
+
+.switch.active {
+
+    background: #3199ee;
+
+}
+
+.switch.active::before {
+
+    left: 22px;
+
+}
+
+body.dark .clock {
+    background: radial-gradient(circle at 30% 30%, #1c0735, #000000 75%);
+}
+
+/* ================= DAY THEME ================= */
+
+body:not(.dark) {
+
+    color: #111;
+
+    background: radial-gradient(circle at center,
+            #8de2f1 0%,
+            #ffffff 35%,
+            #ccdff8 70%,
+            #a0c7f7 100%);
+
+}
+
+
+/* clock light mode */
+
+body:not(.dark) .clock {
+
+    background: linear-gradient(145deg,
+            rgb(29, 235, 239),
+            rgba(52, 90, 245, 0.675));
+
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    box-shadow:
+        inset 0 0 25px rgb(56, 146, 221),
+        0 15px 35px rgb(24, 133, 249),
+        0 40px 100px rgba(9, 223, 187, 0.992);
+
+}
+
+/* LIGHT MODE CLOCK HOVER */
+
+body:not(.dark) .clock:hover {
+
+    background: radial-gradient(circle at 30% 30%,
+            #3fb2e7,
+            #0555ea 75%) !important;
+
+    box-shadow:
+        inset 0 0 15px rgba(9, 171, 225, 0.938),
+        0 15px 35px rgb(34, 68, 219),
+        0 30px 70px rgb(111, 169, 228) !important;
+
+}
+
+/* clock hands */
+
+body:not(.dark) .hour,
+body:not(.dark) .minute {
+    background: #333;
+}
+
+body:not(.dark) .second {
+    background: #ff6a00;
+}
+
+
+/* center dot */
+
+body:not(.dark) .center-dot {
+    background: #333;
+}
+
+
+/* date */
+
+body:not(.dark) #fullDate {
+    color: #222;
+}
+
+body:not(.dark) #dayName {
+    color: #555;
+}
+
+
+/* buttons */
+
+body:not(.dark) .tabs button {
+
+    color: #000000;
+    background: rgba(255, 255, 255, 0.35);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.15);
+
+}
+
+body:not(.dark) .clock:hover {
+
+    background: linear-gradient(145deg,
+            rgba(255, 255, 255, 0.85),
+            rgba(255, 255, 255, 0.25));
+
+}
+
+body:not(dark) .reflection {
+
+    position: absolute;
+
+    inset: -20%;
+
+    border-radius: 50%;
+
+    pointer-events: relative;
+
+    background: conic-gradient(from 0deg,
+            transparent 0deg,
+            rgba(255, 255, 255, 0.18) 50deg,
+            transparent 90deg);
+
+    filter: blur(8px);
+
+    animation: rotateShine 40s linear infinite;
+
+    opacity: 0.9;
+
+}
+
+/* settings icon */
+
+body:not(.dark) .settings-btn {
+    color: #111;
+}
+
+/* BACK BUTTON MODERN STYLE */
+
+.settings-btn.back {
+
+    width: 0;
+    height: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 110px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-right: 2px;
+
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(10px);
+
+    transition: all 0.25s ease;
+
+}
+
+.settings-btn.back:hover {
+
+    background: rgba(255, 255, 255, 0.25);
+
+    transform: scale(1.18);
+
+}
+
+/* =================================================
+             DIGITAL CLOCK UI
+================================================= */
+
+.digital-clock{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+margin-top:31vh;
+margin-left:0;
+}
+
+/* ================= DARK MODE ================= */
+
+body.dark .digital-clock {
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgb(144, 42, 227),
+        0 0 25px rgb(105, 5, 228),
+        0 0 60px rgb(196, 75, 247);
+
+}
+
+/* ================= LIGHT MODE ================= */
+
+body:not(.dark) .digital-clock {
+
+    color: #222;
+
+    text-shadow:
+        0 2px 8px rgba(4, 109, 170, 0.777);
+
+}
+
+/* ================= AM PM STYLE ================= */
+
+.digital-clock .ampm{
+display:inline-block;
+font-size:0.28em;
+margin-left:2px;
+vertical-align:middle;
+}
+
+/* ================= SMOOTH FADE ================= */
+
+.digital-clock {
+
+    animation: clockFade 0.5s ease;
+
+}
+
+@keyframes clockFade {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width:700px){
+
+.digital-clock{
+font-size:35px;
+}
+
+.digital-clock .ampm{
+font-size:0.35em;
+}
+
+}
+
+@media (min-width:700px) and (max-width:1024px){
+
+.digital-clock{
+font-size:56px;
+}
+
+}
+
+@media (min-width:1025px){
+
+.digital-clock{
+font-size:68px;
+}
+
+}
+
+
+
+/* ================= SECONDS ANIMATION ================= */
+
+.seconds {
+
+    display: inline-block;
+
+    min-width: 28px;
+
+    animation: secondsTick 1s ease;
+
+}
+
+/* tick animation */
+
+@keyframes secondsTick {
+
+    0% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.seconds {
+
+    color: #ff6a00;
+
+    text-shadow:
+        0 0 10px rgba(255, 106, 0, 0.8);
+
+}
+
+/* ================= PAGE SYSTEM ================= */
+
+.page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.page.active {
+    display: flex;
+}
+
+/* ================= PAGES CONTENT ================= */
+
+.alarm-page,
+.stopwatch-page,
+.countdown-page {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.alarm-input-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
+    align-items: center;
+    gap: 10px;
+}
+
+.alarm-input-row input {
+    position: relative;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    z-index: 10;
+}
+
+.alarm-input-row button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.stopwatch-display {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.stopwatch-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.timer-input {
+    display: flex;
+    gap: 10px;
+}
+
+.timer-input input {
+    width: 70px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.timer-display {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ====================== ALARM UI ==================== */
+
+/* alarm page container */
+
+
+.alarm-page {
+
+    width: 100%;
+    max-width: 900px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+}
+
+
+/* title */
+
+.alarm-page h2 {
+    position: sticky;
+    top: 0;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: inherit;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+}
+
+
+
+/* add alarm button */
+
+.add-alarm-btn {
+
+    z-index: 200;
+    position: fixed;
+    display: fixed;
+    height: 80px;
+    width: 80px;
+    right: 2vw;
+    bottom: 15vh;
+    padding: 4px, 4px, 4px, 4px;
+    color: inherit;
+    /* GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI';
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .3s ease
+}
+
+.add-alarm {
+
+    position: absolute;
+    right: 25px;
+    bottom: 110px;
+
+    display: flex;
+    align-items: center;
+
+}
+
+.add-alarm-btn:hover {
+
+    transform: scale(1.15);
+
+}
+
+
+@media (max-width:700px) {
+
+    .add-alarm {
+        display: flex;
+        height: 50px;
+        width: 70px;
+        position: fixed;
+
+    }
+
+}
+
+.time-error {
+    display: none;
+    color: #ff4d4d;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-error {
+    border: 2px solid red;
+    box-shadow: 0 0 5px red;
+}
+
+
+/* =============================
+ALARM LIST
+============================= */
+
+.alarm-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 15px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.alarm-list::-webkit-scrollbar {
+
+    width: 6px;
+
+}
+
+.alarm-list::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+.alarm-list::-webkit-scrollbar-thumb {
+
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.4));
+
+    border-radius: 20px;
+
+}
+
+/* =========================
+   ALARM CARD
+========================= */
+
+.alarm-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 28px;
+    margin: 6px auto;
+
+    width: 100%;
+    max-width: 420px;
+
+    border-radius: 20px;
+    cursor: pointer;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+    overflow-y: auto;
+}
+
+.alarm-card:hover {
+    transform: translateY(-2px);
+}
+
+
+/* LEFT SIDE TIME */
+
+.alarm-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.alarm-time {
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.alarm-period {
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+
+/* RIGHT SIDE CONTROLS */
+
+.alarm-controls {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+
+/* =========================
+   TOGGLE SWITCH
+========================= */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #ccc;
+    border-radius: 30px;
+    transition: .3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+
+    height: 18px;
+    width: 18px;
+
+    left: 3px;
+    bottom: 3px;
+
+    background: white;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.switch input:checked+.slider {
+    background: #4CAF50;
+}
+
+.switch input:checked+.slider:before {
+    transform: translateX(24px);
+}
+
+
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-alarm {
+    width: 35px;
+    height: 35px;
+    border-radius: 30%;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.17);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(51, 50, 50, 0.155);
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(10, 10, 10, 0.277);
+
+    transition: transform .3s ease
+}
+
+.delete-alarm:hover {
+    color: #fa0303;
+    transform: scale(1.29);
+    background: rgba(255, 0, 0, 0.186);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgb(249, 5, 5);
+    border-radius: 15px;
+
+    box-shadow: 0 8px 25px rgba(233, 60, 60, 0.578);
+}
+
+
+/* =============================
+TOGGLE SWITCH
+============================= */
+
+.switch {
+
+    position: relative;
+
+    width: 48px;
+    height: 26px;
+    margin-left: 15px;
+
+}
+
+.switch input {
+
+    display: none;
+
+}
+
+.slider {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: #555;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.slider:before {
+
+    content: "";
+
+    position: absolute;
+
+    height: 20px;
+    width: 20px;
+
+    left: 3px;
+    bottom: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    transition: .3s;
+
+}
+
+.switch input:checked+.slider {
+
+    background: #00d084;
+
+}
+
+.switch input:checked+.slider:before {
+
+    transform: translateX(22px);
+
+}
+
+
+/* =============================
+RESPONSIVE
+============================= */
+
+@media (max-width:600px) {
+
+    .alarm-time {
+
+        font-size: 32px;
+
+    }
+
+    .alarm-card {
+
+        padding: 14px 18px;
+
+    }
+
+}
+
+/*=========== TIME MODAL WHICH IS INSIDE ADD ALARM BUTTON ======= */
+
+.time-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: rgba(50, 50, 50, 0.205);
+    backdrop-filter: blur(10px);
+    opacity: 1;
+}
+
+.time-modal.active {
+    display: flex;
+}
+
+.time-modal-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 40px rgba(53, 53, 53, 0.196);
+    text-align: center;
+    color: #1c2b44;
+}
+
+.time-modal-box h3 {
+
+    font-size: 20px;
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+}
+
+.time-row {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+
+}
+
+.time-row input {
+
+    width: 70px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    font-size: 26px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.4);
+
+    box-shadow:
+        inset 0 3px 6px rgba(0, 0, 0, 0.1),
+        0 3px 8px rgba(0, 0, 0, 0.15);
+
+    outline: none;
+
+}
+
+.colon {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.ampm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ampm-btn {
+
+    padding: 6px 12px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    cursor: pointer;
+
+    background: rgba(255, 255, 255, 0.3);
+
+    font-weight: 500;
+
+}
+
+.ampm-btn.active {
+    background: #2196f3;
+    color: white;
+}
+
+.modal-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+}
+
+.modal-buttons button {
+
+    padding: 8px 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 500;
+
+}
+
+#cancelAlarm {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+#okAlarm {
+    background: #2196f3;
+    color: white;
+}
+
+@media (max-width:480px) {
+
+    .time-modal-box {
+
+        width: 90%;
+        padding: 22px;
+
+    }
+
+    .time-row input {
+
+        width: 60px;
+        height: 45px;
+
+        font-size: 22px;
+
+    }
+
+    .colon {
+        font-size: 24px;
+    }
+
+    .ampm {
+        flex-direction: row;
+    }
+
+    .modal-buttons {
+
+        gap: 10px;
+
+    }
+
+}
+
+@media (max-width:768px) {
+
+    .time-modal-box {
+
+        width: 340px;
+
+    }
+
+    .time-row {
+
+        gap: 10px;
+
+    }
+
+    .time-row input {
+
+        width: 65px;
+        height: 48px;
+
+        font-size: 24px;
+
+    }
+
+}
+
+@media (max-width:1024px) {
+
+    .time-modal-box {
+
+        width: 360px;
+
+    }
+
+    .time-row input {
+
+        width: 70px;
+
+    }
+
+}
+
+@media (min-width:1400px) {
+
+    .time-modal-box {
+
+        width: 420px;
+
+        padding: 35px 45px;
+
+    }
+
+    .time-row input {
+
+        width: 80px;
+        height: 55px;
+
+        font-size: 28px;
+
+    }
+
+}
+
+@media (max-width:600px) {
+
+    .alarm-card {
+        max-width: 100%;
+        padding: 16px 20px;
+    }
+
+    .alarm-page h2 {
+        font-size: 34px;
+    }
+
+}
+
+/* ==============================
+   ALARM POPUP
+============================== */
+
+.alarm-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+}
+
+.alarm-popup.active {
+    display: flex;
+}
+
+.alarm-popup-box {
+
+    width: 320px;
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+    text-align: center;
+
+    animation: alarmPopup 0.4s ease;
+}
+
+@keyframes alarmPopup {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.alarm-popup-time {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* sound select */
+
+.alarm-popup-controls {
+    margin-bottom: 20px;
+}
+
+
+/* buttons */
+
+.alarm-popup-buttons {
+
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+
+}
+
+#snoozeBtn,
+#stopBtn {
+
+    flex: 1;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#snoozeBtn {
+
+    background: #3ec9a7;
+    color: white;
+
+}
+
+#snoozeBtn:hover {
+    background: #2fb497;
+}
+
+#stopBtn {
+
+    background: #ff5f6d;
+    color: white;
+
+}
+
+#stopBtn:hover {
+    background: #e14d5a;
+}
+
+/* Floating Alarm Sound Button */
+
+.alarm-sound-floating {
+
+    position: fixed;
+
+    right: 40px;
+    bottom: 160px;
+
+    z-index: 1000;
+
+}
+
+.alarm-sound-btn {
+
+    z-index: 200;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+    right: 2vw;
+    bottom: 29vh;
+    padding: 4px, 4px, 4px, 4px;
+    color: inherit;
+    /* GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI';
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .3s ease
+}
+
+.alarm-sound-btn:hover {
+
+    transform: scale(1.18);
+
+    background: rgba(255, 255, 255, 0.25);
+
+}
+
+/* =========================
+STOPWATCH
+========================= */
+
+.stopwatch{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap: 50px;
+}
+
+.stopwatch .time{
+font-size:70px;
+font-weight:700;
+letter-spacing:3px;
+margin-top: 120px;
+font-variant-numeric:tabular-nums;
+}
+
+.stopwatch .controls{
+display:flex;
+gap:35px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.stopwatch button{
+border:none;
+cursor:pointer;
+border-radius:50px;
+font-weight:600;
+padding:12px 28px;
+font-size:15px;
+transition:all .25s ease;
+}
+
+/* Start */
+
+.start{
+background:linear-gradient(135deg,#f87777,#fc3b3b);
+margin-top: 40px;
+color:white;
+padding:16px 48px;
+font-size:18px;
+}
+
+.start:hover {
+    color: red;
+    transform: translateY(-7px) scale(1.55);
+}
+
+/* Stop */
+
+.stop{
+background:#f44f4c;
+color:white;
+}
+
+.stop:hover{
+    color: red;
+    transform: scale(1.55);
+
+}
+
+/* Reset */
+
+.reset{
+background:#9e9e9e;
+color:white;
+}
+
+.reset:hover{
+    color: red;
+    transform: scale(1.55);
+}
+
+/* Lap */
+
+#lapBtn{
+background:#eeeeee;
+}
+
+#lapBtn:hover{
+    color: red;
+    transform: scale(1.55);
+}
+
+/* Hidden */
+
+.hidden{
+display:none;
+}
+
+/* Laps */
+
+.laps{
+width:100%;
+max-width:360px;
+display:flex;
+flex-direction:column;
+gap:8px;
+list-style:none;
+}
+
+.laps li{
+display:flex;
+justify-content:space-between;
+padding:10px 14px;
+background:rgba(0,0,0,0.05);
+border-radius:6px;
+font-size:14px;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width:480px){
+
+.stopwatch .time{
+font-size:48px;
+letter-spacing:2px;
+}
+
+.stopwatch .controls{
+gap:10px;
+}
+
+.stopwatch button{
+padding:10px 20px;
+font-size:14px;
+}
+
+.start{
+padding:14px 36px;
+font-size:16px;
+}
+
+.laps{
+max-width:100%;
+}
+
+}
+
+
+/* =========================
+TABLET
+========================= */
+
+@media (min-width:481px) and (max-width:900px){
+
+.stopwatch .time{
+font-size:60px;
+}
+
+.stopwatch button{
+padding:11px 24px;
+font-size:15px;
+}
+
+.start{
+padding:15px 40px;
+font-size:17px;
+}
+
+.laps{
+max-width:420px;
+}
+
+}
+
+
+/* =========================
+DESKTOP
+========================= */
+
+@media (min-width:901px){
+
+.stopwatch .time{
+font-size:72px;
+}
+
+.stopwatch button{
+padding:12px 28px;
+font-size:16px;
+}
+
+.start{
+padding:16px 48px;
+font-size:18px;
+}
+
+.laps{
+max-width:360px;
+}
+
+}
+ 
+/*  =========== CountDown UI =============== */
+
+#CD-heading {
+
+    position: sticky;
+    top: 0;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: inherit;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+
+}
+
+.timer-setup{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.timer-inputs{
+display:flex;
+gap:10px;
+margin-top: 140px;
+}
+
+.timer-inputs input{
+
+width:100px;
+height:65px;
+
+text-align:center;
+font-size:18px;
+
+border-radius:10px;
+border:8px, inherit;
+
+background:rgba(121, 197, 245, 0.35);
+
+backdrop-filter:blur(14px);
+
+color:inherit;
+
+box-shadow:
+0 4px 15px rgba(77, 159, 210, 0.336);
+
+}
+
+.timer-inputs input:hover{
+
+background:rgba(40,40,60,.45);
+
+}
+
+#startTimer{
+
+width:85px;
+height:85px;
+margin-top: 30px;
+margin-left: 35%;
+
+border-radius:50%;
+
+font-size:28px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border:none;
+
+background:linear-gradient(
+135deg,
+rgba(255,140,66,.9),
+rgba(255,120,40,.8)
+);
+
+backdrop-filter:blur(12px);
+
+cursor:pointer;
+
+box-shadow:
+0 10px 35px rgba(255,140,66,.35);
+
+transition:all .35s ease;
+
+}
+
+#startTimer:hover{
+
+transform:scale(1.12);
+
+box-shadow:
+0 20px 60px rgba(255,140,66,.6);
+
+filter:brightness(1.15);
+
+}
+
+#startTimer:active{
+
+transform:scale(.95);
+
+box-shadow:
+0 8px 25px rgba(255,140,66,.4);
+
+}
+
+#timerPopup{
+
+position: fixed;
+top: 0;
+left: 0;
+
+width: 100vw;
+height: 100vh;
+
+display: none;
+flex-direction: column;
+
+justify-content: center;
+align-items: center;
+
+background: rgba(0,0,0,0.4);
+backdrop-filter: blur(8px);
+
+z-index: 9999;
+
+}
+
+
+.timer-circle{
+
+position:relative;
+
+width:260px;
+height:260px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+.timer-circle svg{
+position:absolute;
+transform:rotate(-90deg);
+}
+
+.circle-bg{
+fill:none;
+stroke:#444;
+stroke-width:10;
+}
+
+.circle-progress{
+fill:none;
+stroke:white;
+stroke-width:10;
+stroke-dasharray:754;
+stroke-dashoffset:754;
+}
+
+#timerDisplay{
+font-size:40px;
+color:white;
+}
+
+.timer-controls{
+display:flex;
+gap:20px;
+}
+
+.timer-controls button{
+
+width:120px;
+height:60px;
+
+border-radius:30px;
+
+border:none;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+#addMinute{
+background:#333;
+color:white;
+}
+
+#pauseTimer{
+background:white;
+color:black;
+}
+
+.timerCard{
+
+width: 360px;
+height: 360px;
+gap:25px;
+
+background: #2d3147;
+
+border-radius: 25px;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+position: relative;
+
+}
+
+/* CLOSE BUTTON */
+
+#closeTimer{
+
+position: absolute;
+
+top: 70px;
+left: 50%;
+
+width: 30px;
+height: 30px;
+
+border-radius: 50%;
+
+border: none;
+
+background: rgba(255,255,255,0.15);
+
+backdrop-filter: blur(6px);
+
+color: white;
+
+font-size: 16px;
+font-weight: bold;
+
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+transition: 0.25s;
+
+}
+
+#closeTimer:hover{
+
+background: rgba(255,80,80,0.9);
+
+transform: scale(1.1);
+
+}
+
+.timerControls{
+
+display: flex;
+
+flex-direction: column;
+
+gap: 12px;
+
+align-items: center;
+
+margin-top: 20px;
+
+}
+
+.timerControls button{
+
+width: 130px;
+height: 42px;
+
+border-radius: 25px;
+
+border: none;
+
+font-size: 15px;
+
+cursor: pointer;
+
+transition: 0.25s;
+
+}
+
+.timerControls button:hover{
+
+transform: scale(1.05);
+
+}
+
