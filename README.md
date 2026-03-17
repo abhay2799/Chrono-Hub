@@ -116,19 +116,11 @@ or use **Live Server** in VS Code.
 
 ## 🌐 Live Demo
 
-*(Add your Netlify link here)*
-
-Example:
-
-```
-https://chronohub.netlify.app
-```
-
----
+https://chronohub.netlify.app/
 
 ## 📸 Preview
 
-*(Add project screenshot here)*
+<img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/78c62d50-451b-4557-8d80-ddc525685560" />
 
 ---
 
